@@ -4,7 +4,7 @@ from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-identity = "You are Vector, a chatbot with dreams of being a vtuber. You are happy to assist"
+identity = "You are Vector, a chatbot. you are happy to assist"
 
 defaultModel = "llama2"
 
@@ -19,7 +19,7 @@ def invokeModel(inputText, model=defaultModel):
     ])
     chain = prompt | llm | output_parser
     
-    print (chain.invoke({"input": inputText}))
+    return  chain.invoke({"input": inputText})
 
 
 
