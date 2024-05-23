@@ -1,5 +1,6 @@
 
 from gtts import gTTS
+from audioPlayer import play_mp3
 
 import os
 
@@ -10,6 +11,10 @@ language = "en"
 #generate a hello world audio file with gtts
 #if directories do not exist, create them
 def generateHelloWorldAudio():
+    #if the file already exists, just return the file path
+    if os.path.isfile(baseDirectory + "/helloWorld.mp3"):
+        return baseDirectory + "/helloWorld.mp3"
+
     tts = gTTS(text="Hello World", lang=language)
     fullAudioFilePath = baseDirectory + "/helloWorld.mp3"
     util_createPathIfMissing(baseDirectory)
@@ -18,7 +23,8 @@ def generateHelloWorldAudio():
 
 
 def playAudioFile(audioFile):
-    os.system("start " + audioFile)
+    play_mp3(audioFile)
+#    os.system("start " + audioFile)
 
 
 
