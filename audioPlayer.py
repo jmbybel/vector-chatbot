@@ -5,6 +5,7 @@ import time
 
 #Play an MP3 file, but will read an MP3 file.
 #Note there is a delay between player.play() firing and player.is_playing() being true. the 0.05 second sleep time is a magic number that works locally.
+#Not 100% sure i am satisfied with using VLC just yet but it seems to work for the moment.
 def play_mp3_vlc(mp3_file):
     player = vlc.MediaPlayer(mp3_file)
     player.play()
