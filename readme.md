@@ -10,11 +10,20 @@ externally need to start a local Ollama llama2 instance
     * ollama run llama2 
 
 pip installs needed so far:
+
     * langchain
+    
     * langchain-community
+    
     * python-vlc
+    
     * gTTS
+    
     * speechrecognition
+    
     * setuptools
+    
         ** due to errors from distutils
     *possibly pyttsx3
+
+    * pyaudio, for saving files
