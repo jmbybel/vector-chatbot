@@ -37,7 +37,12 @@ def test_generateHelloWorldAudio():
     if os.path.isfile(baseDirectory + "/helloWorld.mp3"):
         return baseDirectory + "/helloWorld.mp3"
 
-    return generateAudioFile("Hello World", "helloWorld")
+    filepath = generateAudioFile("Hello World", "helloWorld")
+    if os.path.isfile(filepath):
+        return filepath
+    else:
+        print("ERROR: file not found")
+        return None
 
 
 def main():
