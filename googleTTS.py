@@ -1,6 +1,5 @@
 
 from gtts import gTTS
-from audioPlayer import play_mp3_vlc, record_audio
 
 import os
 import time
@@ -9,14 +8,6 @@ import time
 #TODO later move to a configurable spot
 baseDirectory = "C:/programming/data/sound/gtts"
 language = "en"
-
-#generate a hello world audio file with gtts
-def generateHelloWorldAudio():
-    #if the file already exists, don't recreate hello world.
-    if os.path.isfile(baseDirectory + "/helloWorld.mp3"):
-        return baseDirectory + "/helloWorld.mp3"
-
-    return generateAudioFile("Hello World", "helloWorld")
 
 #generate an audio file with gtts from a given line of text
 #return the full path of the audio file
@@ -34,18 +25,23 @@ def generateAudioFile(audioText, optionalFilename = None):
 
     return fullAudioFilePath
 
-def playAudioFile(audioFile):
-    play_mp3_vlc(audioFile)
-
 #utility function to create directories if they do not exist
 def util_createPathIfMissing(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
 
+#generate a hello world audio file with gtts
+def test_generateHelloWorldAudio():
+    #if the file already exists, don't recreate hello world.
+    if os.path.isfile(baseDirectory + "/helloWorld.mp3"):
+        return baseDirectory + "/helloWorld.mp3"
+
+    return generateAudioFile("Hello World", "helloWorld")
+
+
 def main():
-    filePath = generateHelloWorldAudio()
-    playAudioFile(filePath)
+    filePath = test_generateHelloWorldAudio()
 
 if __name__ == "__main__":
     main()
