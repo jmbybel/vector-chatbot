@@ -3,15 +3,61 @@ from langchain_community.llms import Ollama
 from audioPlayer import play_mp3_vlc, record_audio
 from googleTTS import generateAudioFile
 from ollamaChatbot import invokeModel
+import keyboard
+import time
+import os
 
 
+audioFileNames = []
 
-#This file will eventually become  launcher for this application. any sample/testing data will be removed.
-#other files will 
-# 1) handle interactions with the llama2 model specifically
-# 2) provide a general LLM wrapper to swap models trivially
-# 3) DONE create a text-to-speech engine to convert model responses to speech, and play them back to the user
-# 4) DONE create a speech-to-text engine to convert user speech to text, and pass it to the model
+#one round-trip to and from the chatbot.
+# record audio, pass it to the model as text, receive response, play the response as audio
+def interactWithBot():
+    global audioFileNames
+
+    audioText = record_audio()
+    #if audioText is empty, blank, or whitespace, return.
+    if not audioText:
+        return
+    response = invokeModel(audioText)
+    botAudioFile = generateAudioFile(response)
+    play_mp3_vlc(botAudioFile)
+    audioFileNames.append(botAudioFile)
+
+
+'''
+def interactWithBot_byteArray():
+    audioText = record_audio()
+    #if audioText is empty, blank, or whitespace, return.
+    if not audioText:
+        return
+    response = invokeModel(audioText)
+    botAudioFile = generateDirectPlayBytes(response)
+    play_bytesIo_pydub(botAudioFile)
+'''
+
+#will listen for a F5 button press
+#If detected will attempt to perform a full interaction with the chatbot.
+# TODO find a sweet sleep delay for clean polling.
+def listenForF5():
+    global audioFileNames
+
+    while True:
+        if keyboard.is_pressed('F4'):
+            interactWithBot()
+        elif keyboard.is_pressed('F6'):
+            print("F6 pressed -- exiting")
+            break
+        else:
+            if len(audioFileNames) > 0:
+                deleteMe = audioFileNames.pop()
+                if os.path.isfile(deleteMe):
+                    os.remove(deleteMe)
+            time.sleep(0.5)
+            
+    for audioFile in audioFileNames:
+        if os.path.isfile(audioFile):
+            os.remove(audioFile)
 
 
 #record audio by calling record_audio, return the text from it, generate mp3 of the same text via gTTS
@@ -24,17 +70,13 @@ def testFeedbackLoop():
 
 #record audio, pass it to the model as text, receive response, play the response as audio
 def testOneShot():
-    audioText = record_audio()
-    response = invokeModel(audioText)
-    botAudioFile = generateAudioFile(response)
-    play_mp3_vlc(botAudioFile)
+    interactWithBot()
 
 def main():
-    result = testOneShot()
-    print(result)
-#    testFeedbackLoop()
-#    llm = Ollama(model="llama2")
-#    llm.invoke("Is this a successful test of invoking the LLM from a Python script?")
+    listenForF5()
+#    result = testOneShot()
+#    print(result)
+
 
 
 

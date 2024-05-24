@@ -1,5 +1,6 @@
 
 from gtts import gTTS
+#from io import BytesIO
 
 import os
 import time
@@ -9,6 +10,18 @@ import time
 baseDirectory = "C:/programming/data/sound/gtts"
 language = "en"
 
+
+'''
+#generate text-to-speech audio with gtts, return a BytesIO item of the audio file in memory rather than saved to disk
+#TODO commenting out until the full chain of events works locally.
+def generateDirectPlayBytes(audioText):
+    tts = gTTS(text=audioText, lang=language)
+    mp3_fp = BytesIO()
+    tts.write_to_fp(mp3_fp)
+    mp3_fp.seek(0)
+    return mp3_fp
+'''
+
 #generate an audio file with gtts from a given line of text
 #return the full path of the audio file
 #optionally save the file with a given name, otherwise it saves as the current system time in millis
@@ -16,13 +29,10 @@ def generateAudioFile(audioText, optionalFilename = None):
     tts = gTTS(text=audioText, lang=language)
     fullAudioFilePath = baseDirectory + "/" + str(int(time.time())) + ".mp3"
     if optionalFilename is not None:
-        tts.save(baseDirectory + "/" + optionalFilename + ".mp3")
         fullAudioFilePath = baseDirectory + "/" + optionalFilename + ".mp3"
     util_createPathIfMissing(baseDirectory)
     tts.save(fullAudioFilePath)
-
-    print("DEBUG", audioText)
-
+ 
     return fullAudioFilePath
 
 #utility function to create directories if they do not exist
