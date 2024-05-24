@@ -9,21 +9,17 @@ externally need to start a local Ollama llama2 instance
     * from their quickstart guide, after install just:
     * ollama run llama2 
 
-pip installs needed so far:
+To stream the text-to-speech rather than save to a file, then read it, ffmpeg is needed.
 
-    * langchain
+    * https://ffmpeg.org/download.html
+
+
+has a requirements.txt so can install requirements from pip easily.
+
+    *  pip install -r requirements.txt
+
+possible pip installs for future items?:
     
-    * langchain-community
+    * pydub (instead of python-vlc)
     
-    * python-vlc
-    
-    * gTTS
-    
-    * speechrecognition
-    
-    * setuptools
-    
-        ** due to errors from distutils
     *possibly pyttsx3
-
-    * pyaudio, for saving files

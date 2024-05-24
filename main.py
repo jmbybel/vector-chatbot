@@ -39,7 +39,7 @@ def interactWithBot_byteArray():
 #will listen for a F5 button press
 #If detected will attempt to perform a full interaction with the chatbot.
 # TODO find a sweet sleep delay for clean polling.
-def listenForF5():
+def listenForF4():
     global audioFileNames
 
     while True:
@@ -73,7 +73,7 @@ def testOneShot():
     interactWithBot()
 
 def main():
-    listenForF5()
+    listenForF4()
 #    result = testOneShot()
 #    print(result)
 
