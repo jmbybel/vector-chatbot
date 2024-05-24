@@ -9,7 +9,7 @@ externally need to start a local Ollama llama2 instance
     * from their quickstart guide, after install just:
     * ollama run llama2 
 
-To stream the text-to-speech rather than save to a file, then read it, ffmpeg is needed.
+To stream the text-to-speech rather than save to a file, then read it, ffmpeg may eventually be needed...
 
     * https://ffmpeg.org/download.html
 
