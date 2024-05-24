@@ -1,6 +1,5 @@
 
 from gtts import gTTS
-#from io import BytesIO
 
 import os
 import time
@@ -10,17 +9,6 @@ import time
 baseDirectory = "C:/programming/data/sound/gtts"
 language = "en"
 
-
-'''
-#generate text-to-speech audio with gtts, return a BytesIO item of the audio file in memory rather than saved to disk
-#TODO commenting out until the full chain of events works locally.
-def generateDirectPlayBytes(audioText):
-    tts = gTTS(text=audioText, lang=language)
-    mp3_fp = BytesIO()
-    tts.write_to_fp(mp3_fp)
-    mp3_fp.seek(0)
-    return mp3_fp
-'''
 
 #generate an audio file with gtts from a given line of text
 #return the full path of the audio file
@@ -53,7 +41,6 @@ def test_generateHelloWorldAudio():
     else:
         print("ERROR: file not found")
         return None
-
 
 def main():
     filePath = test_generateHelloWorldAudio()

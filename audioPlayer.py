@@ -1,26 +1,7 @@
 import speech_recognition as sr
 
-#from pydub import AudioSegment
-#from pydub.playback import play
-
 import vlc
 import time
-
-
-
-'''
-#Takes a BytesIO object and play it via pydub as a mp3
-#TODO partly works after adding ffmpeg to PATH but fails to run _winapi.createProcess due to permissions
-   no willing to raise permission level of this to continue. 
- 
-def play_bytesIo_pydub(byteArray):
-    AudioSegment.converter = "C:/programming/data/ffmpeg-7/bin"
-    AudioSegment.ffmpeg = "C:/programming/data/ffmpeg-7/bin"
-    AudioSegment.ffprobe ="C:/programming/data/ffmpeg-7/bin"
-    sound = AudioSegment.from_mp3(byteArray)
-    play(sound)
-
-    '''
 
 
 #Play an MP3 file, but will read an MP3 file.
@@ -55,8 +36,6 @@ def test_helloworld():
 #just to test things inline
 def main():
     test_helloworld()
-#    text = record_audio()
-#    print(text)
 
 if __name__ == "__main__":
     main()

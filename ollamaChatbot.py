@@ -22,8 +22,6 @@ def invokeModel(inputText, model=defaultModel):
     return  chain.invoke({"input": inputText})
 
 
-
-
 def main():
     result = invokeModel("This prompt is being raised from a separate Python program. Did it successfully reach you for a response?")
     print(result)
