@@ -1,13 +1,14 @@
 
 from gtts import gTTS
-
+from config import TTS_SAVE_DIRECTORY, TTS_LANGUAGE
 import os
 import time
 
 #hardcode audio file save/load location to be windows directory C:/programming/data/sound/gtts
 #TODO later move to a configurable spot
-baseDirectory = "C:/programming/data/sound/gtts"
-language = "en"
+
+baseDirectory = TTS_SAVE_DIRECTORY
+language = TTS_LANGUAGE
 
 
 #generate an audio file with gtts from a given line of text

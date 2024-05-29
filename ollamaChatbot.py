@@ -3,10 +3,12 @@
 from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from config import OLLAMA_MODEL, OLLAMA_IDENTITY
 
-identity = "You are Vector, a chatbot. you are happy to assist. You are being interacted with via text-to-speech so you do not use any emoticons, emoji, nor do you emote in asterisks, such as *giggles*"
 
-defaultModel = "llama2"
+identity = OLLAMA_IDENTITY
+defaultModel = OLLAMA_MODEL
+
 
 def invokeModel(inputText, model=defaultModel):
 

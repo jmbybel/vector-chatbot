@@ -25,10 +25,12 @@ def interactWithBot():
     play_mp3_vlc(botAudioFile)
     audioFileNames.append(botAudioFile)
 
+    print("Debug - bot text response: ", response)
+
 
 #will listen for a F5 button press
 #If detected will attempt to perform a full interaction with the chatbot.
-# TODO find a sweet sleep delay for clean polling.
+# TODO find a sweet spot on the sleep delay for clean polling.
 def listenForF4():
     global audioFileNames
 
@@ -43,7 +45,7 @@ def listenForF4():
                 deleteMe = audioFileNames.pop()
                 if os.path.isfile(deleteMe):
                     os.remove(deleteMe)
-            time.sleep(0.5)
+            time.sleep(0.45)
             
     for audioFile in audioFileNames:
         if os.path.isfile(audioFile):
@@ -57,6 +59,8 @@ def testFeedbackLoop():
     
     resultAudio = generateAudioFile(audioText)
     play_mp3_vlc(resultAudio)
+
+
 
 
 def main():
